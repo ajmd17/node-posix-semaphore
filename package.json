@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/krait-games/node-posix-semaphore.git"
+    "url": "git+https://github.com/ajmd17/node-posix-semaphore.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/krait-games/node-posix-semaphore/issues"
+    "url": "https://github.com/ajmd17/node-posix-semaphore/issues"
   },
-  "homepage": "https://github.com/krait-games/node-posix-semaphore#readme",
+  "homepage": "https://github.com/ajmd17/node-posix-semaphore#readme",
 
   "dependencies": {
     "mmap-io": "^1.1.7",
