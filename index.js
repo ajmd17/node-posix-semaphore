@@ -97,8 +97,14 @@ class Semaphore {
 
 process.on("exit", () => {
     // release all semaphores
-    for(let semaphore in openedSemaphores) {
-        semaphore.close();
+    for(let key in openedSemaphores) {
+        if (openedSemaphores[key]) {
+            try {
+                openedSemaphores[key].close();
+            } catch (err) {
+                console.error(`Failed to close named semaphore ${key}`, err);
+            }
+        }
     }
 });
 
