@@ -1,5 +1,6 @@
 const sp = require('./build/Release/posix-semaphore.node');
 
+/** @type {Semaphore[]} */
 let openedSemaphores = [];
 
 class Semaphore {
@@ -45,6 +46,7 @@ class Semaphore {
             this.close();
         }
 
+        openedSemaphores.push(this);
         this.buffer = sp._sem_open(this.name, oflag, mode, value);
     }
 
@@ -90,19 +92,21 @@ class Semaphore {
     static open(name, oflag, mode, value) {
         let semaphore = new Semaphore(name);
         semaphore.open(oflag, mode, value);
-        openedSemaphores.push(semaphore);
         return semaphore;
     }
 }
 
 process.on("exit", () => {
     // release all semaphores
-    for(let key in openedSemaphores) {
-        if (openedSemaphores[key]) {
+    // make a copy because close() modifies the list
+    const currentlyOpenedSemaphores = [...openedSemaphores];
+
+    for(let item of currentlyOpenedSemaphores) {
+        if (item) {
             try {
-                openedSemaphores[key].close();
+                item.close();
             } catch (err) {
-                console.error(`Failed to close named semaphore ${key}`, err);
+                console.error(`Failed to close named semaphore ${item.name}`, err);
             }
         }
     }
