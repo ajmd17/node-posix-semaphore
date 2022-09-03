@@ -9,6 +9,23 @@ class Semaphore {
     /** @type {Buffer | null} */
     buffer = null;
 
+    static Flag = {
+        O_RDONLY: sp.O_RDONLY,
+        O_RDWR: sp.O_RDWR,
+        O_CREAT: sp.O_CREAT,
+        O_EXCL: sp.O_EXCL,
+        O_TRUNC: sp.O_TRUNC
+    };
+
+    static Mode = {
+        S_IRUSR: sp.S_IRUSR,
+        S_IWUSR: sp.S_IWUSR,
+        S_IRGRP: sp.S_IRGRP,
+        S_IWGRP: sp.S_IWGRP,
+        S_IROTH: sp.S_IROTH,
+        S_IWOTH: sp.S_IWOTH
+    };
+
     /** @param {string} name */
     constructor(name) {
         this.name = name;
@@ -67,6 +84,13 @@ class Semaphore {
 
 
 module.exports = {
+
+    /**
+     * @param {string} name
+     * @param {Semaphore.Flag} oflag,
+     * @param {Semaphore.Mode} mode,
+     * @param {number} value
+    */
     open: function(name, oflag, mode, value) {
         let semaphore = new Semaphore(name);
         semaphore.open(oflag, mode, value);

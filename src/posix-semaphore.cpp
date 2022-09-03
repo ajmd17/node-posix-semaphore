@@ -6,6 +6,7 @@
 #include <sys/semaphore.h>
 #include <sys/fcntl.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <unistd.h>
 
 #define NAN_RETURN(X) info.GetReturnValue().Set(X)
@@ -216,6 +217,13 @@ NAN_MODULE_INIT(Init) {
     NODE_DEFINE_CONSTANT(target, O_CREAT);
     NODE_DEFINE_CONSTANT(target, O_EXCL);
     NODE_DEFINE_CONSTANT(target, O_TRUNC);
+
+    NODE_DEFINE_CONSTANT(target, S_IRUSR);
+    NODE_DEFINE_CONSTANT(target, S_IWUSR);
+    NODE_DEFINE_CONSTANT(target, S_IRGRP);
+    NODE_DEFINE_CONSTANT(target, S_IWGRP);
+    NODE_DEFINE_CONSTANT(target, S_IROTH);
+    NODE_DEFINE_CONSTANT(target, S_IWOTH);
 }
 
 NODE_MODULE(posix_semaphore, Init)

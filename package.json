@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/ajmd17/node-posix-semaphore.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Andrew MacDonald",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ajmd17/node-posix-semaphore/issues"
   },
