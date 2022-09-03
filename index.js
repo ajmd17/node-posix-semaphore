@@ -36,10 +36,10 @@ class Semaphore {
     }
 
     /**
-     * @param {number} oflag 
-     * @param {number} mode 
-     * @param {number} value 
-     */
+     * @param {Semaphore.Flag | number} oflag,
+     * @param {Semaphore.Mode | number} mode,
+     * @param {number} value
+    */
     open(oflag, mode, value) {
         if (this.isOpened) {
             this.close();
@@ -83,8 +83,8 @@ class Semaphore {
     
     /**
      * @param {string} name
-     * @param {Semaphore.Flag} oflag,
-     * @param {Semaphore.Mode} mode,
+     * @param {Semaphore.Flag | number} oflag,
+     * @param {Semaphore.Mode | number} mode,
      * @param {number} value
     */
     static open(name, oflag, mode, value) {
