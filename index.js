@@ -80,24 +80,20 @@ class Semaphore {
             openedSemaphores.splice(index, 1);
         }
     }
-}
-
-
-module.exports = {
-
+    
     /**
      * @param {string} name
      * @param {Semaphore.Flag} oflag,
      * @param {Semaphore.Mode} mode,
      * @param {number} value
     */
-    open: function(name, oflag, mode, value) {
+    static open(name, oflag, mode, value) {
         let semaphore = new Semaphore(name);
         semaphore.open(oflag, mode, value);
         openedSemaphores.push(semaphore);
         return semaphore;
     }
-};
+}
 
 process.on("exit", () => {
     // release all semaphores
@@ -105,3 +101,5 @@ process.on("exit", () => {
         semaphore.close();
     }
 });
+
+module.exports = Semaphore;
