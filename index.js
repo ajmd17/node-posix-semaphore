@@ -76,7 +76,7 @@ class Semaphore {
 
         this.buffer = null;
 
-        let index = openedSemaphores.findIndex(this);
+        let index = openedSemaphores.indexOf(this);
 
         if (index != -1) {
             openedSemaphores.splice(index, 1);
